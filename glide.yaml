@@ -1,0 +1,3 @@
+package: github.com/prinsmike/httprouter
+import:
+- package: github.com/gorilla/mux

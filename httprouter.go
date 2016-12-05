@@ -17,7 +17,7 @@ type Route struct {
 type Routes []Route
 
 // Add a new Route to Routes.
-func (r *Routes) Add(label, method, pattern, description string, handlerFunc http.HandlerFunc) {
+func (r Routes) Add(label, method, pattern, description string, handlerFunc http.HandlerFunc) {
 	r = append(r, Route{label, method, pattern, description, handlerFunc})
 }
 

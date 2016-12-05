@@ -7,7 +7,7 @@ import (
 )
 
 type Route struct {
-	Label       string           `json:"label"`
+	Title       string           `json:"title"`
 	Method      string           `json:"method"`
 	Pattern     string           `json:"pattern"`
 	Description string           `json:"description"`
@@ -17,8 +17,9 @@ type Route struct {
 type Routes []Route
 
 // Add a new Route to Routes.
-func (r Routes) Add(label, method, pattern, description string, handlerFunc http.HandlerFunc) {
-	r = append(r, Route{label, method, pattern, description, handlerFunc})
+func (r Routes) Add(title, method, pattern, description string, handlerFunc http.HandlerFunc) Routes {
+	r = append(r, Route{title, method, pattern, description, handlerFunc})
+	return r
 }
 
 // Create a new router.
@@ -29,7 +30,7 @@ func New(routes Routes) *mux.Router {
 		router.
 			Methods(route.Method).
 			Path(route.Pattern).
-			Name(route.Label).
+			Name(route.Title).
 			Handler(route.HandlerFunc)
 	}
 
